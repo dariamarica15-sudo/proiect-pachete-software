@@ -12,10 +12,6 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-
-# =========================================================
-# CONFIGURARE APLICATIE
-# =========================================================
 st.set_page_config(
     page_title="Proiect - Marketing Bancar",
     layout="wide",
@@ -28,10 +24,7 @@ DATA_PATH = "Bank_Marketing_Dataset.csv"
 TARGET = "TermDepositSubscribed"
 ID_COL = "ClientID"
 
-
-# =========================================================
 # FUNCTII
-# =========================================================
 @st.cache_data
 def load_data(path):
     return pd.read_csv(path)
@@ -119,7 +112,7 @@ def prepare_data(df):
     df = fill_missing_values(df)
     return df
 
-# INCARCARE DATE
+# incarcare date
 try:
     raw_df = load_data(DATA_PATH)
 except FileNotFoundError:
@@ -132,7 +125,7 @@ if TARGET not in df.columns:
     st.error(f"Coloana target {TARGET} nu există în fișier.")
     st.stop()
 
-# SIDEBAR
+# sidebar
 st.sidebar.header("Navigare")
 section = st.sidebar.radio(
     "Alege secțiunea:",
@@ -163,9 +156,8 @@ if selected_segment != "Toate":
     filtered_df = filtered_df[filtered_df["CustomerSegment"].astype(str) == selected_segment]
 
 
-# =========================================================
+
 # 1. PREZENTAREA DATELOR
-# =========================================================
 if section == "1. Prezentarea datelor":
     st.header("1. Prezentarea setului de date")
 
